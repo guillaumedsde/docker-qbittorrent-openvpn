@@ -24,28 +24,21 @@ fi
 echo "Updating TRANSMISSION_BIND_ADDRESS_IPV4 to the ip of $1 : $4"
 export TRANSMISSION_BIND_ADDRESS_IPV4=$4
 
-if [[ "combustion" = "$TRANSMISSION_WEB_UI" ]]; then
-  echo "Using Combustion UI, overriding TRANSMISSION_WEB_HOME"
-  export TRANSMISSION_WEB_HOME=/opt/transmission-ui/combustion-release
+
+echo "Generating qBittorrent qBittorrent.conf from env variables"
+QBT_CONFIG_FILE=/config/qBittorrent/config/qBittorrent.conf
+
+if [ -f "$QBT_CONFIG_FILE" ]
+then
+  # Set connection interface address to the VPN address
+  sed -i -E 's/^.*\b(Connection.*InterfaceAddress)\b.*$/Connection\\InterfaceAddress='"$TRANSMISSION_BIND_ADDRESS_IPV4"'/' $QBT_CONFIG_FILE
+else
+  # Ensure config directory is created
+  mkdir -p /config/
+  # Create the configuration file from a template and environment variables
+  dockerize -template /etc/transmission/settings.tmpl:/config/qBittorrent/config/qBittorrent.conf
 fi
 
-if [[ "kettu" = "$TRANSMISSION_WEB_UI" ]]; then
-  echo "Using Kettu UI, overriding TRANSMISSION_WEB_HOME"
-  export TRANSMISSION_WEB_HOME=/opt/transmission-ui/kettu
-fi
-
-if [[ "transmission-web-control" = "$TRANSMISSION_WEB_UI" ]]; then
-  echo "Using Transmission Web Control  UI, overriding TRANSMISSION_WEB_HOME"
-  export TRANSMISSION_WEB_HOME=/opt/transmission-ui/transmission-web-control
-fi
-
-echo "Generating transmission settings.json from env variables"
-# Ensure TRANSMISSION_HOME is created
-mkdir -p ${TRANSMISSION_HOME}
-dockerize -template /etc/transmission/settings.tmpl:${TRANSMISSION_HOME}/settings.json
-
-echo "sed'ing True to true"
-sed -i 's/True/true/g' ${TRANSMISSION_HOME}/settings.json
 
 if [[ ! -e "/dev/random" ]]; then
   # Avoid "Fatal: no entropy gathering module detected" error
@@ -60,20 +53,22 @@ if [[ "true" = "$DROP_DEFAULT_ROUTE" ]]; then
   ip r del default || exit 1
 fi
 
-echo "STARTING TRANSMISSION"
-exec su --preserve-environment ${RUN_AS} -s /bin/bash -c "/usr/bin/transmission-daemon -g ${TRANSMISSION_HOME} --logfile ${TRANSMISSION_HOME}/transmission.log" &
+echo "STARTING QBITTORRENT"
+exec su --preserve-environment ${RUN_AS} -s /bin/bash -c "/usr/bin/qbittorrent-nox --webui-port="8080" --profile=/config" &
 
-if [[ "${OPENVPN_PROVIDER^^}" = "PIA" ]]
-then
-    echo "CONFIGURING PORT FORWARDING"
-    exec /etc/transmission/updatePort.sh &
-elif [[ "${OPENVPN_PROVIDER^^}" = "PERFECTPRIVACY" ]]
-then
-    echo "CONFIGURING PORT FORWARDING"
-    exec /etc/transmission/updatePPPort.sh ${TRANSMISSION_BIND_ADDRESS_IPV4} &
-else
-    echo "NO PORT UPDATER FOR THIS PROVIDER"
-fi
+# This is disabled for now as I have not implemented port forwarding configuration for qbittorrent
+
+# if [[ "${OPENVPN_PROVIDER^^}" = "PIA" ]]
+# then
+#     echo "CONFIGURING PORT FORWARDING"
+#     exec /etc/transmission/updatePort.sh &
+# elif [[ "${OPENVPN_PROVIDER^^}" = "PERFECTPRIVACY" ]]
+# then
+#     echo "CONFIGURING PORT FORWARDING"
+#     exec /etc/transmission/updatePPPort.sh ${TRANSMISSION_BIND_ADDRESS_IPV4} &
+# else
+#     echo "NO PORT UPDATER FOR THIS PROVIDER"
+# fi
 
 # If transmission-post-start.sh exists, run it
 if [[ -x /scripts/transmission-post-start.sh ]]
