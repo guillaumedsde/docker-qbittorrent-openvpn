@@ -1,8 +1,11 @@
 site_name: docker-qbittorrent-openvpn
 site_url: https://guillaumedsde.github.io/docker-qbittorrent-openvpn/
 repo_url: https://github.com/guillaumedsde/docker-qbittorrent-openvpn
+repo_name: GitHub
+
 theme:
   name: 'material'
+
 markdown_extensions:
     - toc:
         permalink: True
@@ -14,10 +17,6 @@ nav:
    - 'Arguments': 'arguments.md'
    - 'Custom pre/post scripts': 'custom-scripts.md'
    - 'Use docker env file': 'dockerenv.md'
-   - 'Access': 'access.md'
-   - 'Running on ARM': 'run-on-arm.md'
-   - 'Synology NAS': 'synology-nas.md'
-   - 'Systemd integration': 'systemd-integration.md'
    - 'Known issues, tips and tricks': 'known-issues.md'
 plugins:
     - search
