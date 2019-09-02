@@ -34,42 +34,12 @@ Because your VPN connection can sometimes fail, Docker will run a health check o
 | `HEALTH_CHECK_HOST` | this host is pinged to check if the network connection still works | `google.com` |
 
 ### Permission configuration options
+
 By default the startup script applies a default set of permissions and ownership on the transmission download, watch and incomplete directories. The GLOBAL_APPLY_PERMISSIONS directive can be used to disable this functionality.
 
 | Variable                   | Function                               | Example                          |
 | -------------------------- | -------------------------------------- | -------------------------------- |
 | `GLOBAL_APPLY_PERMISSIONS` | Disable setting of default permissions | `GLOBAL_APPLY_PERMISSIONS=false` |
-
-### Alternative web UIs
-You can override the default web UI by setting the ```TRANSMISSION_WEB_HOME``` environment variable. If set, Transmission will look there for the Web Interface files, such as the javascript, html, and graphics files.
-
-[Combustion UI](https://github.com/Secretmapper/combustion), [Kettu](https://github.com/endor/kettu) and [Transmission-Web-Control](https://github.com/ronggang/transmission-web-control/) come bundled with the container. You can enable either of them by setting```TRANSMISSION_WEB_UI=combustion```, ```TRANSMISSION_WEB_UI=kettu``` or ```TRANSMISSION_WEB_UI=transmission-web-control```, respectively. Note that this will override the ```TRANSMISSION_WEB_HOME``` variable if set.
-
-| Variable                | Function                         | Example                                                                                                         |
-| ----------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `TRANSMISSION_WEB_HOME` | Set Transmission web home        | `TRANSMISSION_WEB_HOME=/path/to/web/ui`                                                                         |
-| `TRANSMISSION_WEB_UI`   | Use the specified bundled web UI | `TRANSMISSION_WEB_UI=combustion`, `TRANSMISSION_WEB_UI=kettu` or `TRANSMISSION_WEB_UI=transmission-web-control` |
-
-### Transmission configuration options
-
-You may override Transmission options by setting the appropriate environment variable.
-
-The environment variables are the same name as used in the transmission settings.json file
-and follow the format given in these examples:
-
-| Transmission variable name | Environment variable name             |
-| -------------------------- | ------------------------------------- |
-| `speed-limit-up`           | `TRANSMISSION_SPEED_LIMIT_UP`         |
-| `speed-limit-up-enabled`   | `TRANSMISSION_SPEED_LIMIT_UP_ENABLED` |
-| `ratio-limit`              | `TRANSMISSION_RATIO_LIMIT`            |
-| `ratio-limit-enabled`      | `TRANSMISSION_RATIO_LIMIT_ENABLED`    |
-
-As you can see the variables are prefixed with `TRANSMISSION_`, the variable is capitalized, and `-` is converted to `_`.
-
-Transmission options changed in the WebUI or in settings.json will be overridden at startup and will not survive after a reboot of the container. You may want to use these variables in order to keep your preferences.
-
-PS: `TRANSMISSION_BIND_ADDRESS_IPV4` will be overridden to the IP assigned to your OpenVPN tunnel interface.
-This is to prevent leaking the host IP.
 
 ### Web proxy configuration options
 
