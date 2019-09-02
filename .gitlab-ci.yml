@@ -1,0 +1,61 @@
+stages:
+  - test
+  - build
+  - docs
+
+
+# use python as base image unless stated otherwise
+image: python:latest
+
+################################
+# configure python package cache
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+docs:
+  stage: build
+  before_script:
+    - python -V
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+  script:
+    - pip install mkdocs mkdocs-material
+    - mkdocs build
+  artifacts:
+    paths:
+      - build
+
+.build_service:
+  stage: build
+  image: docker:stable
+  # disable cache for this job
+  cache: {}
+  before_script:
+    - apk add make
+    - apk add git
+    - make docker-login
+  script:
+    - make build
+    - make tag
+    - make deploy
+
+# build Gitlab pages documentation
+pages:
+  image: alpine:latest
+  stage: docs
+  # disable cache for this job
+  cache: {}
+  only:
+    - develop
+    - master
+  script:
+    - cp -r build public
+  artifacts:
+    paths:
+      - public
