@@ -55,7 +55,7 @@ pages:
     - develop
     - master
   script:
-    - cp -r build public
+    - cp -r site public
   artifacts:
     paths:
       - public
