@@ -14,8 +14,8 @@ $ docker run --cap-add=NET_ADMIN -d \
               -e LOCAL_NETWORK=192.168.0.0/16 \
               --log-driver json-file \
               --log-opt max-size=10m \
-              -p 9091:9091 \
-              haugene/transmission-openvpn
+              -p 8080:8080 \
+              guillaumedsde/qbittorrent-openvpn
 ```
 
 You must set the environment variables `OPENVPN_PROVIDER`, `OPENVPN_USERNAME` and `OPENVPN_PASSWORD` to provide basic connection details.

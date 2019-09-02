@@ -11,6 +11,6 @@ $ docker run --cap-add=NET_ADMIN --device=/dev/net/tun -d \
               -v /your/storage/path/:/data \
               -v /etc/localtime:/etc/localtime:ro \
               --env-file /your/docker/env/file \
-              -p 9091:9091 \
-              haugene/transmission-openvpn
+              -p 8080:8080 \
+              guillaumedsde/qbittorrent-openvpn
 ```
