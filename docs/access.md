@@ -1,5 +1,5 @@
 ## Access the WebUI
-But what's going on? My http://my-host:9091 isn't responding?
+But what's going on? My http://my-host:8080 isn't responding?
 This is because the VPN is active, and since docker is running in a different ip range than your client the response
 to your request will be treated as "non-local" traffic and therefore be routed out through the VPN interface.
 
@@ -14,12 +14,3 @@ $ docker run -d \
       -p 8080:8080 \
       haugene/transmission-openvpn-proxy
 ```
-## Access the RPC
-
-You need to add a / to the end of the URL to be able to connect. Example: http://my-host:9091/transmission/rpc/
-
-## Controlling Transmission remotely
-The container exposes /config as a volume. This is the directory where the supplied transmission and OpenVPN credentials will be stored.
-If you have transmission authentication enabled and want scripts in another container to access and
-control the transmission-daemon, this can be a handy way to access the credentials.
-For example, another container may pause or restrict transmission speeds while the server is streaming video.

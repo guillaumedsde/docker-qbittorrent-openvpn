@@ -1,6 +1,6 @@
-site_name: docker-transmission-openvpn
-site_url: http://haugene.github.io/docker-transmission-openvpn/
-repo_url: https://github.com/haugene/docker-transmission-openvpn/
+site_name: docker-qbittorrent-openvpn
+site_url: https://guillaumedsde.github.io/docker-qbittorrent-openvpn/
+repo_url: https://github.com/guillaumedsde/docker-qbittorrent-openvpn
 theme:
   name: 'material'
 markdown_extensions:
@@ -13,7 +13,6 @@ nav:
    - 'Supported providers': 'supported-providers.md'
    - 'Arguments': 'arguments.md'
    - 'Custom pre/post scripts': 'custom-scripts.md'
-   - 'RSS plugin': 'rss-plugin.md'
    - 'Use docker env file': 'dockerenv.md'
    - 'Access': 'access.md'
    - 'Running on ARM': 'run-on-arm.md'
