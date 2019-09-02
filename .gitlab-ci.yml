@@ -29,7 +29,7 @@ docs:
     - mkdocs build
   artifacts:
     paths:
-      - build
+      - site
 
 .build_service:
   stage: build
