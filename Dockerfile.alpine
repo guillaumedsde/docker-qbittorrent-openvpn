@@ -3,16 +3,11 @@ FROM alpine:3.10
 VOLUME /data
 VOLUME /config
 
-ARG QBT_VERSION=4.1.6
-ARG DOCKERIZE_ARCH=amd64
-ENV DOCKERIZE_VERSION=v0.6.0
+ARG QBT_VERSION=4.1
 
 RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk --no-cache add bash dumb-init ip6tables ufw@testing openvpn shadow 'qbittorrent-nox@testing=~'"${QBT_VERSION}" curl jq \
-    && echo "Install dockerize $DOCKERIZE_VERSION ($DOCKERIZE_ARCH)" \
-    && wget -qO- https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-$DOCKERIZE_ARCH-$DOCKERIZE_VERSION.tar.gz | tar xz -C /usr/bin \
+    && apk --no-cache add bash dumb-init ip6tables ufw@testing openvpn shadow dockerize@testing 'qbittorrent-nox@testing=~'"${QBT_VERSION}" curl jq \
     && rm -rf /tmp/* /var/tmp/* \
-    && apk cache clean \
     && groupmod -g 1000 users \
     && useradd -u 911 -U -d /config -s /bin/false abc \
     && usermod -G users abc
