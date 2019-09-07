@@ -30,8 +30,15 @@ QBT_CONFIG_FILE=/config/qBittorrent/config/qBittorrent.conf
 
 if [ -f "$QBT_CONFIG_FILE" ]
 then
-  # Set connection interface address to the VPN address
-  sed -i -E 's/^.*\b(Connection.*InterfaceAddress)\b.*$/Connection\\InterfaceAddress='"$TRANSMISSION_BIND_ADDRESS_IPV4"'/' $QBT_CONFIG_FILE
+  # if Connection address line exists
+  if grep -q 'Connection\\InterfaceAddress' "$QBT_CONFIG_FILE";
+    then
+      # Set connection interface address to the VPN address
+      sed -i -E 's/^.*\b(Connection.*InterfaceAddress)\b.*$/Connection\\InterfaceAddress='"$TRANSMISSION_BIND_ADDRESS_IPV4"'/' $QBT_CONFIG_FILE
+    else
+      # add the line for configuring interface address to the qBittorrent config file
+      echo 'Connection\\InterfaceAddress='"$TRANSMISSION_BIND_ADDRESS_IPV4" >> "$QBT_CONFIG_FILE"
+    fi
 else
   # Ensure config directory is created
   mkdir -p /config/
