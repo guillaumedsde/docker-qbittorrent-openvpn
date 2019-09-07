@@ -37,5 +37,4 @@ If you provide a list and the selected server goes down, after the value of ping
 To make sure this work in all cases, you should add ```--pull-filter ignore ping``` to your OPENVPN_OPTS variable.
 
 As you can see, the container also expects a data volume to be mounted.
-This is where Transmission will store your downloads, incomplete downloads and look for a watch directory for new .torrent files.
-By default a folder named transmission-home will also be created under /data, this is where Transmission stores its state.
+This is where qBittorrent will store your downloads, incomplete downloads and look for a watch directory for new .torrent files.

@@ -5,6 +5,17 @@
 
 This project is forked from [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) and is currently being adapted to work with qBittorrent instead of Transmision.
 
+This repository was forked from GitHub, as such, the [main repository is on GitHub](https://github.com/guillaumedsde/docker-qbittorrent-openvpn) and a [mirror is on gitlab.com](https://gitlab.com/guillaumedsde/docker-qbittorrent-openvpn) mainly for building the documentation in a CI pipeline
+
+## Port Status
+What is working:
+* qBittorrent WebUI
+* qBittorrent binds to the VPN IP address, this, plus Haugene's firewall configuration means that no data *should* leak outside the VPN tunnel
+
+What is not working:
+* configuration of qBittorrent from ENV variables
+* qBittorrent port forwarding
+
 ## Quick Start
 
 This container contains OpenVPN and qBittorrent with a configuration
@@ -29,4 +40,4 @@ $ docker run --cap-add=NET_ADMIN -d \
 ```
 
 ## Documentation
-The full documentation is available at https://guillaumedsde.github.io/docker-qbittorrent-openvpn/.
+The full documentation is available at https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/ .
