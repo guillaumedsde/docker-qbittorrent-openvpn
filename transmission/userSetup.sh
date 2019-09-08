@@ -16,18 +16,18 @@ if [ -n "$PUID" ] && [ ! "$(id -u root)" -eq "$PUID" ]; then
         ${TRANSMISSION_INCOMPLETE_DIR} \
         ${TRANSMISSION_WATCH_DIR}
 
-    echo "Enforcing ownership on transmission config directories"
+    echo "Enforcing ownership on qBittorrent config directories"
     chown -R ${RUN_AS}:${RUN_AS} \
         /config \
         ${TRANSMISSION_HOME}
 
-    echo "Applying permissions to transmission config directories"
+    echo "Applying permissions to qBittorrent config directories"
     chmod -R go=rX,u=rwX \
         /config \
         ${TRANSMISSION_HOME}
 
     if [ "$GLOBAL_APPLY_PERMISSIONS" = true ] ; then
-	echo "Setting owner for transmission paths to ${PUID}:${PGID}"
+	echo "Setting owner for qBittorrent paths to ${PUID}:${PGID}"
         chown -R ${RUN_AS}:${RUN_AS} \
             ${TRANSMISSION_DOWNLOAD_DIR} \
             ${TRANSMISSION_INCOMPLETE_DIR} \
@@ -43,7 +43,7 @@ fi
 
 echo "
 -------------------------------------
-Transmission will run as
+qBittorrent will run as
 -------------------------------------
 User name:   ${RUN_AS}
 User uid:    $(id -u ${RUN_AS})

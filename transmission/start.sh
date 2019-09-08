@@ -85,4 +85,4 @@ then
    echo "/scripts/transmission-post-start.sh returned $?"
 fi
 
-echo "Transmission startup script complete."
+echo "qBittorrent startup script complete."
