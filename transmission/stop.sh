@@ -8,7 +8,7 @@ then
    echo "/scripts/transmission-pre-stop.sh returned $?"
 fi
 
-kill $(pidof transmission-daemon)
+kill $(pidof qbittorrent-nox)
 
 # If transmission-post-stop.sh exists, run it
 if [[ -x /scripts/transmission-post-stop.sh ]]
