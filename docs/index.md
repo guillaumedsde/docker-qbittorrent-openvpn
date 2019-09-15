@@ -1,7 +1,9 @@
 # OpenVPN and qBittorrent with WebUI
 
-[![Docker Automated build](https://img.shields.io/docker/automated/guillaumedsde/qbittorrent-openvpn.svg)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/guillaumedsde/qbittorrent-openvpn.svg)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
+[![Docker Automated build](https://img.shields.io/docker/cloud/build/guillaumedsde/qbittorrent-openvpn)]()
+[![Docker Automated build](https://img.shields.io/docker/cloud/automated/guillaumedsde/qbittorrent-openvpn)]()
+[![Docker Pulls](https://img.shields.io/docker/pulls/guillaumedsde/qbittorrent-openvpn)]()
+[![Docker Stars](https://img.shields.io/docker/stars/guillaumedsde/qbittorrent-openvpn)]()
 
 This project is forked from [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) and is currently being adapted to work with qBittorrent instead of Transmision.
 
@@ -40,4 +42,4 @@ $ docker run --cap-add=NET_ADMIN -d \
 ```
 
 ## Documentation
-The full documentation is available at https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/ .
+The full documentation is available at [https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/](https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/) .
