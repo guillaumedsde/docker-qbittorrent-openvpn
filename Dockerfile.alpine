@@ -3,10 +3,8 @@ FROM alpine:3.10
 VOLUME /data
 VOLUME /config
 
-ARG QBT_VERSION=4.1
-
 RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk --no-cache add bash dumb-init ip6tables ufw@testing openvpn shadow dockerize@testing 'qbittorrent-nox@testing=~'"${QBT_VERSION}" curl jq \
+    && apk add --no-cache bash dumb-init ip6tables ufw@testing openvpn shadow dockerize@testing qbittorrent-nox@testing curl jq \
     && rm -rf /tmp/* /var/tmp/* \
     && groupmod -g 1000 users \
     && useradd -u 911 -U -d /config -s /bin/false abc \
