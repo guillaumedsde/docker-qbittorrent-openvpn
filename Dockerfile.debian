@@ -5,7 +5,6 @@ VOLUME /config
 
 ARG DOCKERIZE_ARCH=amd64
 ARG DOCKERIZE_VERSION=v0.6.1
-ARG DUMBINIT_VERSION=1.2.2
 
 RUN apt update \
     && apt install -y --no-install-recommends \
@@ -51,7 +50,7 @@ ENV OPENVPN_USERNAME=**None** \
     WEBPROXY_PORT=8888 \
     HEALTH_CHECK_HOST=google.com
 
-HEALTHCHECK --interval=5m CMD /etc/scripts/healthcheck.sh
+HEALTHCHECK --interval=1m CMD /etc/scripts/healthcheck.sh
 
 # Expose port and run
 EXPOSE 8080
