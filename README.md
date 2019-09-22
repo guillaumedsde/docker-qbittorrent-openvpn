@@ -1,9 +1,9 @@
 # OpenVPN and qBittorrent with WebUI
 
 [![Docker build status](https://img.shields.io/docker/cloud/build/guillaumedsde/qbittorrent-openvpn)]()
-[![](https://images.microbadger.com/badges/version/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn")
+[![](https://images.microbadger.com/badges/version/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn)
 [![Docker Automated build](https://img.shields.io/docker/cloud/automated/guillaumedsde/qbittorrent-openvpn)]()
-[![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn")
+[![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn)
 [![Docker Pulls](https://img.shields.io/docker/pulls/guillaumedsde/qbittorrent-openvpn)]()
 [![Docker Stars](https://img.shields.io/docker/stars/guillaumedsde/qbittorrent-openvpn)]()
 
@@ -12,8 +12,8 @@ This project is forked from [haugene/docker-transmission-openvpn](https://github
 This repository was forked from GitHub, as such, the [main repository is on GitHub](https://github.com/guillaumedsde/docker-qbittorrent-openvpn) and a [mirror is on gitlab.com](https://gitlab.com/guillaumedsde/docker-qbittorrent-openvpn) mainly for building the documentation in a CI pipeline. The final images are available in [the docker hub](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
 
 ## Tags
-* `debian`, `latest` slim debian based, almost as small as alpine image [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:debian.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:debian "Get your own image badge on microbadger.com")
-* `alpine` alpine based image, smaller but qbittorrent-nox package in Alpine repository is not updated consistently [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:alpine.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:alpine "Get your own image badge on microbadger.com")
+* `debian`, `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:debian.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:debian) slim debian based, almost as small as alpine image
+* `alpine` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:alpine.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:alpine) alpine based image, smaller but qbittorrent-nox package in Alpine repository is not updated consistently 
 
 ## Port Status
 What is working:
