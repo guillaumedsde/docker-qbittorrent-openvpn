@@ -4,6 +4,7 @@
 
 echo "Build hook running"
 docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-             --build-arg VCS_REF=`git rev-parse --short HEAD` \
-             --build-arg DOCKER_REPO=$DOCKER_REPO
-             -t $IMAGE_NAME .
+             --build-arg VCS_REF="$SOURCE_COMMIT" \
+             --build-arg DOCKER_REPO="$DOCKER_REPO" \
+             -f "$DOCKERFILE_PATH" \
+             -t "$IMAGE_NAME" .
