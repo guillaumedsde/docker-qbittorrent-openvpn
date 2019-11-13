@@ -12,17 +12,22 @@ This project is forked from [haugene/docker-transmission-openvpn](https://github
 This repository was forked from GitHub, as such, the [main repository is on GitHub](https://github.com/guillaumedsde/docker-qbittorrent-openvpn) and a [mirror is on gitlab.com](https://gitlab.com/guillaumedsde/docker-qbittorrent-openvpn) mainly for building the documentation in a CI pipeline. The final images are available in [the docker hub](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
 
 ## Tags
-* `debian`, `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:debian.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:debian) slim debian based, almost as small as alpine image
-* `alpine` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:alpine.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:alpine) alpine based image, smaller but qbittorrent-nox package in Alpine repository is not updated consistently 
+
+- `ubuntu` `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) fat ubuntu image, with most up to date qbittorrent-nox
+- `debian` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:debian.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:debian) slim debian based, almost as small as alpine image, qbittorrent-nox is a few versions behind
+- `alpine` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:alpine.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:alpine) alpine based image, smaller but qbittorrent-nox package in Alpine repository is quite old
 
 ## Port Status
+
 What is working:
-* qBittorrent WebUI
-* qBittorrent binds to the VPN IP address, this, plus Haugene's firewall configuration means that no data *should* leak outside the VPN tunnel
+
+- qBittorrent WebUI
+- qBittorrent binds to the VPN IP address, this, plus Haugene's firewall configuration means that no data _should_ leak outside the VPN tunnel
 
 What is not working:
-* configuration of qBittorrent from ENV variables
-* qBittorrent port forwarding
+
+- configuration of qBittorrent from ENV variables
+- qBittorrent port forwarding
 
 ## Quick Start
 
@@ -48,4 +53,5 @@ $ docker run --cap-add=NET_ADMIN -d \
 ```
 
 ## Documentation
+
 The full documentation is available at [https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/](https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/) .
