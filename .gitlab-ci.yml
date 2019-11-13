@@ -31,20 +31,6 @@ docs:
     paths:
       - site
 
-.build_service:
-  stage: build
-  image: docker:stable
-  # disable cache for this job
-  cache: {}
-  before_script:
-    - apk add make
-    - apk add git
-    - make docker-login
-  script:
-    - make build
-    - make tag
-    - make deploy
-
 # build Gitlab pages documentation
 pages:
   image: alpine:latest
