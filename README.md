@@ -13,9 +13,7 @@ This repository was forked from GitHub, as such, the [main repository is on GitH
 
 ## Tags
 
-- `ubuntu` `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) fat ubuntu image, with most up to date qbittorrent-nox
-- `debian` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:debian.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:debian) slim debian based, almost as small as alpine image, qbittorrent-nox is a few versions behind
-- `alpine` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:alpine.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:alpine) alpine based image, smaller but qbittorrent-nox package in Alpine repository is quite old
+- `ubuntu` `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) as small as an ubuntu image can be, with most up to date qbittorrent-nox
 
 ## Port Status
 
