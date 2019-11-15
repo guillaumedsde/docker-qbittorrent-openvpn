@@ -38,7 +38,7 @@ RUN apt update \
   tzdata \
   tinyproxy \
   dumb-init \
-  && curl -L https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
+  && curl -OL https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xzvf dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
   && apt purge -y software-properties-common \
   && apt-get autoremove -y --purge \
