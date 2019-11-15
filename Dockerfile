@@ -1,6 +1,8 @@
+ARG ARCH=amd64
+
 FROM ubuntu:rolling
 
-ARG DOCKERIZE_ARCH=amd64
+ARG ARCH
 ARG DOCKERIZE_VERSION=v0.6.1
 
 ARG BUILD_DATE
@@ -36,7 +38,7 @@ RUN apt update \
   tzdata \
   tinyproxy \
   dumb-init \
-  && curl -L https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-${DOCKERIZE_ARCH}-${DOCKERIZE_VERSION}.tar.gz | tar -C /usr/local/bin -xzv \
+  && curl -L https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz | tar -C /usr/local/bin -xzv \
   && apt purge -y software-properties-common \
   && apt-get autoremove -y --purge \
   && apt autoclean \
