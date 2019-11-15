@@ -1,4 +1,4 @@
-ARG ARCH=armf
+ARG ARCH=armhf
 
 FROM ubuntu:rolling
 
