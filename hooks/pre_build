@@ -2,7 +2,6 @@
 
 # from https://stackoverflow.com/a/54595564
 
-
 BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
 
 [ "${BUILD_ARCH}" == "Dockerfile" ] && \

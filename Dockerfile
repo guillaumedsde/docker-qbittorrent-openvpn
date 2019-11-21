@@ -12,7 +12,7 @@ ARG VCS_REF
 # Build-time metadata as defined at http://label-schema.org
 LABEL org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.name="$DOCKER_REPO" \
-  org.label-schema.description="Docker container running qBittorrent torrent client with WebUI over an OpenVPN tunnel" \
+  org.label-schema.description="${ARCH} Docker container running qBittorrent torrent client with WebUI over an OpenVPN tunnel" \
   org.label-schema.url="https://guillaumedsde.gitlab.io/docker-qbittorrent-openvpn/" \
   org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.vcs-url="https://github.com/guillaumedsde/docker-qbittorrent-openvpn" \
