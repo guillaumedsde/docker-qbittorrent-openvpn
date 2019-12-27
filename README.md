@@ -13,7 +13,7 @@ This repository was forked from GitHub, as such, the [main repository is on GitH
 
 ## Tags
 
-- `ubuntu` `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) as small as an ubuntu image can be, with most up to date qbittorrent-nox
+- `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) as small as an ubuntu image can be, with most up to date qbittorrent-nox
 
 ## Port Status
 
