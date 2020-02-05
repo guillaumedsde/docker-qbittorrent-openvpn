@@ -69,7 +69,7 @@ ENV OPENVPN_USERNAME=**None** \
   WEBPROXY_PORT=8888 \
   HEALTH_CHECK_HOST=google.com
 
-HEALTHCHECK --interval=1m CMD /etc/scripts/healthcheck.sh
+HEALTHCHECK --interval=10s CMD /etc/scripts/healthcheck.sh
 
 # Expose port and run
 EXPOSE 8080
