@@ -40,6 +40,7 @@ RUN apt update \
   dumb-init \
   && curl -OL https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xzvf dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
+  && rm dockerize-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
   && apt purge -y software-properties-common \
   && apt-get autoremove -y --purge \
   && apt autoclean \
