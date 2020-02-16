@@ -3,9 +3,9 @@
 [![Docker build status](https://img.shields.io/docker/cloud/build/guillaumedsde/qbittorrent-openvpn)]()
 [![](https://images.microbadger.com/badges/version/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn)
 [![Docker Automated build](https://img.shields.io/docker/cloud/automated/guillaumedsde/qbittorrent-openvpn)]()
-[![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn)
 [![Docker Pulls](https://img.shields.io/docker/pulls/guillaumedsde/qbittorrent-openvpn)]()
 [![Docker Stars](https://img.shields.io/docker/stars/guillaumedsde/qbittorrent-openvpn)]()
+<!-- [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn) -->
 
 This project is forked from [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) and is currently being adapted to work with qBittorrent instead of Transmision.
 
@@ -13,7 +13,7 @@ This repository was forked from GitHub, as such, the [main repository is on GitH
 
 ## Tags
 
-- `latest` [![](https://images.microbadger.com/badges/image/guillaumedsde/qbittorrent-openvpn:ubuntu.svg)](https://microbadger.com/images/guillaumedsde/qbittorrent-openvpn:ubuntu) as small as an ubuntu image can be, with most up to date qbittorrent-nox
+- `latest` as small as an ubuntu image can be, with most up to date qbittorrent-nox
 
 ## Port Status
 
