@@ -51,10 +51,11 @@ $ docker run --cap-add=NET_ADMIN -d \
 ```
 
 ## Docker Compose
+
 ```
 version: '3.3'
 services:
-    transmission-openvpn:
+    qbittorrent-openvpn:
         volumes:
             - '/your/storage/path/:/data'
             - '/etc/localtime:/etc/localtime:ro'
@@ -73,8 +74,8 @@ services:
             options:
                 max-size: 10m
         ports:
-            - '9091:9091'
-        image: haugene/transmission-openvpn
+            - '8080:8080'
+        image: guillaumedsde/transmission-openvpn
 ```
 
 ## Documentation
