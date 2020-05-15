@@ -2,10 +2,10 @@
 
 [![Docker build status](https://img.shields.io/docker/cloud/build/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/builds)
 [![Docker Automated build](https://img.shields.io/docker/cloud/automated/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
-![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/guillaumedsde/qbittorrent-openvpn)
+[![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/builds)
 [![Docker Pulls](https://img.shields.io/docker/pulls/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
 [![Docker Stars](https://img.shields.io/docker/stars/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
-![GitHub stars](https://img.shields.io/github/stars/guillaumedsde/docker-qbittorrent-openvpn?style=social)
+[![GitHub stars](https://img.shields.io/github/stars/guillaumedsde/docker-qbittorrent-openvpn)](https://github.com/guillaumedsde/docker-qbittorrent-openvpn)
 
 This project is forked from [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) and is currently being adapted to work with qBittorrent instead of Transmision.
 
@@ -75,7 +75,7 @@ services:
                 max-size: 10m
         ports:
             - '8080:8080'
-        image: guillaumedsde/transmission-openvpn
+        image: guillaumedsde/qbittorrent-openvpn
 ```
 
 ## Documentation

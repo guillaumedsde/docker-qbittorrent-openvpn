@@ -75,7 +75,7 @@ services:
                 max-size: 10m
         ports:
             - '8080:8080'
-        image: guillaumedsde/transmission-openvpn
+        image: guillaumedsde/qbittorrent-openvpn
 ```
 
 ## Documentation
