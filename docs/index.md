@@ -36,6 +36,7 @@ It bundles configuration files for many popular VPN providers to make the setup 
 ```
 $ docker run --cap-add=NET_ADMIN -d \
               -v /your/storage/path/:/data \
+              -v /path/to/config/directory:/config \
               -v /etc/localtime:/etc/localtime:ro \
               -e CREATE_TUN_DEVICE=true \
               -e OPENVPN_PROVIDER=PIA \
@@ -58,6 +59,7 @@ services:
     qbittorrent-openvpn:
         volumes:
             - '/your/storage/path/:/data'
+            - '/path/to/config/directory:/config'
             - '/etc/localtime:/etc/localtime:ro'
         environment:
             - CREATE_TUN_DEVICE=true
