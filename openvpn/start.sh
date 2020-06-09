@@ -1,4 +1,23 @@
 #!/bin/bash
+
+printf "
+___________________________________________________________________________
+                           DEPRECATION NOTICE
+                                                
+     Hi, I have deprecated this container in favour of a better 
+     one I have developed:
+     https://github.com/guillaumedsde/alpine-qbittorrent-openvpn
+     
+     I will not be updating the repository for this container,
+     but I will leave the automatic builds enabled during the
+     'transition'.
+     
+     I suggest you switch to the new ones, it has all the same
+     features and more, while being smaller and more secure.
+     
+___________________________________________________________________________
+"
+
 VPN_PROVIDER="${OPENVPN_PROVIDER,,}"
 VPN_PROVIDER_CONFIGS="/etc/openvpn/${VPN_PROVIDER}"
 export VPN_PROVIDER_CONFIGS
@@ -22,72 +41,64 @@ fi
 echo "Using OpenVPN provider: ${OPENVPN_PROVIDER}"
 
 # If openvpn-pre-start.sh exists, run it
-if [ -x /scripts/openvpn-pre-start.sh ]
-then
-   echo "Executing /scripts/openvpn-pre-start.sh"
-   /scripts/openvpn-pre-start.sh "$@"
-   echo "/scripts/openvpn-pre-start.sh returned $?"
+if [ -x /scripts/openvpn-pre-start.sh ]; then
+  echo "Executing /scripts/openvpn-pre-start.sh"
+  /scripts/openvpn-pre-start.sh "$@"
+  echo "/scripts/openvpn-pre-start.sh returned $?"
 fi
 
-if [[ "${OPENVPN_PROVIDER^^}" = "NORDVPN" ]]
-then
-    if [[ -z $NORDVPN_PROTOCOL ]]
-    then
-      export NORDVPN_PROTOCOL=UDP
-    fi
+if [[ "${OPENVPN_PROVIDER^^}" = "NORDVPN" ]]; then
+  if [[ -z $NORDVPN_PROTOCOL ]]; then
+    export NORDVPN_PROTOCOL=UDP
+  fi
 
-    if [[ -z $NORDVPN_CATEGORY ]]
-    then
-      export NORDVPN_CATEGORY=P2P
-    fi
+  if [[ -z $NORDVPN_CATEGORY ]]; then
+    export NORDVPN_CATEGORY=P2P
+  fi
 
-    if [[ -n $OPENVPN_CONFIG ]]
-    then
-      tmp_Protocol="${OPENVPN_CONFIG##*.}"
-      export NORDVPN_PROTOCOL=${tmp_Protocol^^}
-      echo "Setting NORDVPN_PROTOCOL to: ${NORDVPN_PROTOCOL}"
-      ${VPN_PROVIDER_CONFIGS}/updateConfigs.sh --openvpn-config
-    elif [[ -n $NORDVPN_COUNTRY ]]
-    then
-      export OPENVPN_CONFIG=$(${VPN_PROVIDER_CONFIGS}/updateConfigs.sh)
-    else
-      export OPENVPN_CONFIG=$(${VPN_PROVIDER_CONFIGS}/updateConfigs.sh --get-recommended)
-    fi
-elif [[ "${OPENVPN_PROVIDER^^}" = "FREEVPN" ]]
-then
-    FREEVPN_DOMAIN=${OPENVPN_CONFIG%%-*}
-    
-    # Update FreeVPN certs
-    /etc/openvpn/updateFreeVPN.sh
-    # Get password obtained from updateFreeVPN.sh
-    export OPENVPN_PASSWORD=$(cat /etc/freevpn_password)
-    rm /etc/freevpn_password
-elif [[ "${OPENVPN_PROVIDER^^}" = "VPNBOOK" ]]
-then
-    pwd_url=$(curl -s "https://www.vpnbook.com/freevpn" | grep -m2 "Password:" | tail -n1 | cut -d \" -f2)
-    curl -s -X POST --header "apikey: 5a64d478-9c89-43d8-88e3-c65de9999580" \
-      -F "url=https://www.vpnbook.com/${pwd_url}" \
-      -F 'language=eng' \
-      -F 'isOverlayRequired=true' \
-      -F 'FileType=.Auto' \
-      -F 'IsCreateSearchablePDF=false' \
-      -F 'isSearchablePdfHideTextLayer=true' \
-      -F 'scale=true' \
-      -F 'detectOrientation=false' \
-      -F 'isTable=false' \
-      "https://api.ocr.space/parse/image" -o /tmp/vpnbook_pwd
-    export OPENVPN_PASSWORD=$(cat /tmp/vpnbook_pwd  | awk -F',' '{ print $1 }' | awk -F':' '{print $NF}' | tr -d '"' | awk '{print $1 $2}')
+  if [[ -n $OPENVPN_CONFIG ]]; then
+    tmp_Protocol="${OPENVPN_CONFIG##*.}"
+    export NORDVPN_PROTOCOL=${tmp_Protocol^^}
+    echo "Setting NORDVPN_PROTOCOL to: ${NORDVPN_PROTOCOL}"
+    ${VPN_PROVIDER_CONFIGS}/updateConfigs.sh --openvpn-config
+  elif [[ -n $NORDVPN_COUNTRY ]]; then
+    export OPENVPN_CONFIG=$(${VPN_PROVIDER_CONFIGS}/updateConfigs.sh)
+  else
+    export OPENVPN_CONFIG=$(${VPN_PROVIDER_CONFIGS}/updateConfigs.sh --get-recommended)
+  fi
+elif [[ "${OPENVPN_PROVIDER^^}" = "FREEVPN" ]]; then
+  FREEVPN_DOMAIN=${OPENVPN_CONFIG%%-*}
+
+  # Update FreeVPN certs
+  /etc/openvpn/updateFreeVPN.sh
+  # Get password obtained from updateFreeVPN.sh
+  export OPENVPN_PASSWORD=$(cat /etc/freevpn_password)
+  rm /etc/freevpn_password
+elif [[ "${OPENVPN_PROVIDER^^}" = "VPNBOOK" ]]; then
+  pwd_url=$(curl -s "https://www.vpnbook.com/freevpn" | grep -m2 "Password:" | tail -n1 | cut -d \" -f2)
+  curl -s -X POST --header "apikey: 5a64d478-9c89-43d8-88e3-c65de9999580" \
+    -F "url=https://www.vpnbook.com/${pwd_url}" \
+    -F 'language=eng' \
+    -F 'isOverlayRequired=true' \
+    -F 'FileType=.Auto' \
+    -F 'IsCreateSearchablePDF=false' \
+    -F 'isSearchablePdfHideTextLayer=true' \
+    -F 'scale=true' \
+    -F 'detectOrientation=false' \
+    -F 'isTable=false' \
+    "https://api.ocr.space/parse/image" -o /tmp/vpnbook_pwd
+  export OPENVPN_PASSWORD=$(cat /tmp/vpnbook_pwd | awk -F',' '{ print $1 }' | awk -F':' '{print $NF}' | tr -d '"' | awk '{print $1 $2}')
 fi
 
 if [[ -n "${OPENVPN_CONFIG-}" ]]; then
-  readarray -t OPENVPN_CONFIG_ARRAY <<< "${OPENVPN_CONFIG//,/$'\n'}"
+  readarray -t OPENVPN_CONFIG_ARRAY <<<"${OPENVPN_CONFIG//,/$'\n'}"
   ## Trim leading and trailing spaces from all entries. Inefficient as all heck, but works like a champ.
   for i in "${!OPENVPN_CONFIG_ARRAY[@]}"; do
     OPENVPN_CONFIG_ARRAY[${i}]="${OPENVPN_CONFIG_ARRAY[${i}]#"${OPENVPN_CONFIG_ARRAY[${i}]%%[![:space:]]*}"}"
     OPENVPN_CONFIG_ARRAY[${i}]="${OPENVPN_CONFIG_ARRAY[${i}]%"${OPENVPN_CONFIG_ARRAY[${i}]##*[![:space:]]}"}"
   done
-  if (( ${#OPENVPN_CONFIG_ARRAY[@]} > 1 )); then
-    OPENVPN_CONFIG_RANDOM=$((RANDOM%${#OPENVPN_CONFIG_ARRAY[@]}))
+  if ((${#OPENVPN_CONFIG_ARRAY[@]} > 1)); then
+    OPENVPN_CONFIG_RANDOM=$((RANDOM % ${#OPENVPN_CONFIG_ARRAY[@]}))
     echo "${#OPENVPN_CONFIG_ARRAY[@]} servers found in OPENVPN_CONFIG, ${OPENVPN_CONFIG_ARRAY[${OPENVPN_CONFIG_RANDOM}]} chosen randomly"
     OPENVPN_CONFIG="${OPENVPN_CONFIG_ARRAY[${OPENVPN_CONFIG_RANDOM}]}"
   fi
@@ -105,8 +116,8 @@ else
 fi
 
 # add OpenVPN user/pass
-if [[ "${OPENVPN_USERNAME}" == "**None**" ]] || [[ "${OPENVPN_PASSWORD}" == "**None**" ]] ; then
-  if [[ ! -f /config/openvpn-credentials.txt ]] ; then
+if [[ "${OPENVPN_USERNAME}" == "**None**" ]] || [[ "${OPENVPN_PASSWORD}" == "**None**" ]]; then
+  if [[ ! -f /config/openvpn-credentials.txt ]]; then
     echo "OpenVPN credentials not set. Exiting."
     exit 1
   fi
@@ -114,14 +125,14 @@ if [[ "${OPENVPN_USERNAME}" == "**None**" ]] || [[ "${OPENVPN_PASSWORD}" == "**N
 else
   echo "Setting OPENVPN credentials..."
   mkdir -p /config
-  echo "${OPENVPN_USERNAME}" > /config/openvpn-credentials.txt
-  echo "${OPENVPN_PASSWORD}" >> /config/openvpn-credentials.txt
+  echo "${OPENVPN_USERNAME}" >/config/openvpn-credentials.txt
+  echo "${OPENVPN_PASSWORD}" >>/config/openvpn-credentials.txt
   chmod 600 /config/openvpn-credentials.txt
 fi
 
 # add transmission credentials from env vars
-echo "${TRANSMISSION_RPC_USERNAME}" > /config/transmission-credentials.txt
-echo "${TRANSMISSION_RPC_PASSWORD}" >> /config/transmission-credentials.txt
+echo "${TRANSMISSION_RPC_USERNAME}" >/config/transmission-credentials.txt
+echo "${TRANSMISSION_RPC_PASSWORD}" >>/config/transmission-credentials.txt
 
 # Persist transmission settings for use by transmission-daemon
 dockerize -template /etc/transmission/environment-variables.tmpl:/etc/transmission/environment-variables.sh
@@ -138,7 +149,7 @@ if [[ "${ENABLE_UFW,,}" == "true" ]] || [[ -n "${LOCAL_NETWORK-}" ]]; then
 fi
 
 ## Open port to any address
-function ufwAllowPort {
+function ufwAllowPort() {
   typeset -n portNum=${1}
   if [[ "${ENABLE_UFW,,}" == "true" ]] && [[ -n "${portNum-}" ]]; then
     echo "allowing ${portNum} through the firewall"
@@ -147,7 +158,7 @@ function ufwAllowPort {
 }
 
 ## Open port to specific address.
-function ufwAllowPortLong {
+function ufwAllowPortLong() {
   typeset -n portNum=${1} sourceAddress=${2}
 
   if [[ "${ENABLE_UFW,,}" == "true" ]] && [[ -n "${portNum-}" ]] && [[ -n "${sourceAddress-}" ]]; then
@@ -163,7 +174,7 @@ if [[ "${ENABLE_UFW,,}" == "true" ]]; then
     # force a rewrite on the enable below
     echo "Disable and blank firewall"
     ufw disable
-    echo "" > /etc/ufw/user.rules
+    echo "" >/etc/ufw/user.rules
   fi
   # Enable firewall
   echo "enabling firewall"
@@ -187,7 +198,7 @@ if [[ "${ENABLE_UFW,,}" == "true" ]]; then
     ufwAllowPortLong TRANSMISSION_RPC_PORT GW
   fi
 
-  if [[ -n "${UFW_EXTRA_PORTS-}"  ]]; then
+  if [[ -n "${UFW_EXTRA_PORTS-}" ]]; then
     for port in ${UFW_EXTRA_PORTS//,/ }; do
       if [[ "${UFW_ALLOW_GW_NET,,}" == "true" ]]; then
         ufwAllowPortLong port GW_CIDR

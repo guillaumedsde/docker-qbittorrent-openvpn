@@ -7,6 +7,23 @@
 [![Docker Stars](https://img.shields.io/docker/stars/guillaumedsde/qbittorrent-openvpn)](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
 [![GitHub stars](https://img.shields.io/github/stars/guillaumedsde/docker-qbittorrent-openvpn)](https://github.com/guillaumedsde/docker-qbittorrent-openvpn)
 
+___________________________________________________________________________
+                           DEPRECATION NOTICE
+                                                
+     Hi, I have deprecated this container in favour of a better 
+     one I have developed:
+     https://github.com/guillaumedsde/alpine-qbittorrent-openvpn
+     
+     I will not be updating the repository for this container,
+     but I will leave the automatic builds enabled during the
+     'transition'.
+     
+     I suggest you switch to the new ones, it has all the same
+     features and more, while being smaller and more secure.
+     
+___________________________________________________________________________
+
+
 This project is forked from [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn) and is currently being adapted to work with qBittorrent instead of Transmision.
 
 This repository was forked from GitHub, as such, the [main repository is on GitHub](https://github.com/guillaumedsde/docker-qbittorrent-openvpn) and a [mirror is on gitlab.com](https://gitlab.com/guillaumedsde/docker-qbittorrent-openvpn) mainly for building the documentation in a CI pipeline. The final images are available in [the docker hub](https://hub.docker.com/r/guillaumedsde/qbittorrent-openvpn/)
