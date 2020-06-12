@@ -17,7 +17,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
   org.label-schema.vcs-ref=$VCS_REF \
   org.label-schema.vcs-url="https://github.com/guillaumedsde/docker-qbittorrent-openvpn" \
   org.label-schema.vendor="guillaumedsde" \
-  org.label-schema.schema-version="1.0.0-rc1"
+  org.label-schema.schema-version="1.0"
 
 VOLUME /data
 VOLUME /config
